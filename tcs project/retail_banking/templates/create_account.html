@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form action="", method='POST'>
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Create Customer Screen</legend>
+                <div class="form-group">
+                    {{ form.customerid.label(class='from-control-label') }}
+                    {% if form.customerid.errors %}
+                        {{ form.customerid(class='form-control is-invalid') }}
+                        {% for error in form.customerid.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.customerid(class='form-control') }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.accType.label(class='from-control-label') }}
+                    {% if form.accType.errors %}
+                        {{ form.accType(class='form-control is-invalid') }}
+                        {% for error in form.accType.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.accType(class='form-control') }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.depositeAmount.label(class='from-control-label') }}
+                    {% if form.depositeAmount.errors %}
+                        {{ form.depositeAmount(class='form-control is-invalid') }}
+                        {% for error in form.depositeAmount.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.depositeAmount(class='form-control') }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class='btn btn-outline-info') }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form action="", method='POST'>
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Deposite Money</legend>
+                <div class="form-group">
+                    <label for="ssnid">Customer ID</label>: {{ 100000000+data[0] }}
+                </div>
+                <div class="form-group">
+                    <label for="ssnid">Account ID</label>: {{500000000+data[1]}}
+                </div>
+                <div class="form-group">
+                    <label for="old name">Account Type</label>: {% if data[2] == 'S' %} Saving {% elif data[2] == 'C' %} Current {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="old name">Account Balance</label>: {{ data[3] }}
+                </div>
+                <div class="form-group">
+                    {{ form.deposite.label(class='from-control-label') }}
+                    {% if form.deposite.errors %}
+                        {{ form.deposite(class='form-control is-invalid') }}
+                        {% for error in form.deposite.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.deposite(class='form-control') }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class='btn btn-outline-info') }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form action="", method='POST'>
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Transfer Money</legend>
+                <div class="form-group">
+                    <label for="ssnid">Customer ID</label>: {{ 100000000+data }}
+                </div>
+                <div class="form-group">
+                    {{ form.sourceAcc.label(class='from-control-label') }}
+                    {% if form.sourceAcc.errors %}
+                        {{ form.sourceAcc(class='form-control is-invalid') }}
+                        {% for error in form.sourceAcc.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.sourceAcc(class='form-control') }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.targetAcc.label(class='from-control-label') }}
+                    {% if form.targetAcc.errors %}
+                        {{ form.targetAcc(class='form-control is-invalid') }}
+                        {% for error in form.targetAcc.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.targetAcc(class='form-control') }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.transfer.label(class='from-control-label') }}
+                    {% if form.transfer.errors %}
+                        {{ form.transfer(class='form-control is-invalid') }}
+                        {% for error in form.transfer.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.transfer(class='form-control') }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class='btn btn-outline-info') }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

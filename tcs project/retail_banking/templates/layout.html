@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"> 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title>FedChoice Bank</title>
+</head>
+<body>
+
+ <header class="site-header">
+  <nav class="navbar navbar-expand-md navbar-dark dark bg-dark fixed-top">
+    <div class="container">
+       <p class="navbar-brand mr-4"><span style="color:yellow; font-weight: bold;">FedChoice</span> Bank</p>
+       {% if login: %}
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href='{{ url_for('home') }}'>Home</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Customer Management</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{{ url_for('add_customer') }}">Add Customer</a>
+                  <a class="dropdown-item" href="{{ url_for('update_customer') }}">View / Update Customer</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Account Management</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{{ url_for('add_account') }}">Add Account</a>
+                  <a class="dropdown-item" href="{{ url_for('view_account') }}">View / Delete Account</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Status Details</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{{ url_for('view_customer_status') }}">View Customer Status</a>
+                  <a class="dropdown-item" href="{{ url_for('view_account_status') }}">View Account Status</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Account Operations</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{{ url_for('account_statement') }}">Generate Statement</a>
+                </div>
+              </li>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+            </div>
+          </div>
+       {% endif %}
+    </div>
+  </nav>
+ </header>
+
+
+ <main role="main" class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </div>
+   </div>
+  </main>
+
+
+  
+
+
+
+
+  <!-- Footer -->
+  <footer class="page-footer font-small bg-dark pt-4 pl-4 mt-4">
+
+    <!-- Footer Text -->
+    <div class="container-fluid text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-4 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase font-weight-bold" style="color: white;">About Us</h5>
+          <p style="color: white; font-size: small">FedChoice Bank was founded on 14th June 2016 with the objective of providing with the detailed services beased on Retail Banking operations.
+          The Retail Internet Banking of FedChoice offers a plethora of products and services, to cater its customer by providing certain animus services with an easy volving offer
+        and ways to do the required job without hurdling the process.</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-4 mb-md-0 mb-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase font-weight-bold" style="color: white;">Services</h5>
+          <p style="color: white; font-size: small;">Retail and Cunsumer Banking <br> Personal Internet Banking <br> Corporate Internet Banking <br> Debit and Credit Cards</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-4 mb-md-0 mb-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase font-weight-bold" style="color: white;">Contact Us</h5>
+          <p style="color: white; font-size: small">Email: customer.service@fedchoice.com <br> Contact No: 022-42406778, 022-54567890 <br>
+          Address: Corporate Office, Madame Cama Road, <br> Nariman Point, Mumbai, Maharashtra 400021</p>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Text -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3" style="color: white;">© 2020 Copyright:
+      <a href="https://mdbootstrap.com/"> aakash.com</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form action="", method='POST'>
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">View Customer Details</legend>
+                <div class="form-group">
+                    <label for="ssnid">SSN ID</label>: {{ data[0] }}
+                </div>
+                <div class="form-group">
+                    <label for="ssnid">Customer ID</label>: {{ 10000000+data[1] }}
+                </div>
+                <div class="form-group">
+                    <label for="ssnid">Account ID</label>: {{ 50000000+data[2] }}
+                </div>
+                <div class="form-group">
+                    <label for="name">Customer Name</label>: {{ data[3] }}
+                </div>
+                <div class="form-group">
+                    <label for="age">Customer Age</label>: {{ data[4] }}
+                </div>
+                <div class="form-group">
+                    <label for="add">Customer Address</label>: {{ data[5] }}
+                </div>
+                <div class="form-group">
+                    <label for="city">Customer City</label>: {{ data[6] }}
+                </div>
+                <div class="form-group">
+                    <label for="state">Customer State</label>: {{ data[7] }}
+                </div>
+                <div class="form-group">
+                    <label for="state">Account Type</label>: {% if data[8] == 'S' %} Saving {% elif data[8] == 'C' %} Current {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="state">Account Balance</label>: {{ data[9] }}
+                </div>
+            </fieldset>
+        </form>
+        <p data-placement="top" data-toggle="tooltip" title="Deposite Money"><a class="btn btn-primary btn-sm float-left mr-4" data-title="Deposite Money" href="{{ url_for('deposite', id=data[1]) }}">Deposite</a></p>
+        <p data-placement="top" data-toggle="tooltip" title="Withdraw Money"><a class="btn btn-primary btn-sm float-left mr-4" data-title="Withdraw Money" href="{{ url_for('withdraw', id=data[1]) }}" >Withdraw</a></p>
+        <p data-placement="top" data-toggle="tooltip" title="Transfer Money"><a class="btn btn-primary btn-sm" data-title="Transfer Money" href="{{ url_for('transfer', id=data[1]) }}" >Transfer</a></p>
+    </div>
+{% endblock content %}

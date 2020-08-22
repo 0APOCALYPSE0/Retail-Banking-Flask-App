@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="col-md-12">
+    <h4>Account Details</h4>
+    <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped table-sm">
+            <thead>
+                <th>S.NO</th>
+                <th>Acc ID</th>
+                <th>Cust ID</th>
+                <th>Acc Type</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                {% for value in data %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ 500000000+value[0]}}</td>
+                    <td>{{ 100000000+value[1]}}</td>
+                    <td>{% if value[2] == 'S' %} Saving {% elif value[2] == 'C' %} Current {% endif %}</td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><a class="btn btn-danger btn-sm" data-title="Delete" href="{{ url_for('delete_account', id = value[0]) }}" ><span class="glyphicon glyphicon-trash"></span></a></p></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

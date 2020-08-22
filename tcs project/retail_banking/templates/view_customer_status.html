@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="col-md-12">
+    <h4>Customers Status</h4>
+    <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped table-sm">
+            <thead>
+                <th>S.NO</th>
+                <th>SSN ID</th>
+                <th>Cust ID</th>
+                <th>Status</th>
+                <th>Message</th>
+                <th>Last Updated</th>
+                <th>View</th>  
+            </thead>
+            <tbody>
+                {% for value in data %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ value[0] }}</td>
+                    <td>{{ 100000000+value[1]}}</td>
+                    <td>{{ value[2]}}</td>
+                    <td>{{ value[3]}}</td>
+                    <td>{{ value[4] }}</td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="View"><a class="btn btn-primary btn-sm" data-title="View" href="{{ url_for('view_customer', id= value[1]) }}" ><span class="glyphicon glyphicon-user"></span></a></p></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

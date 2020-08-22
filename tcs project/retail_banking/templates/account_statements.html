@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form action="", method='POST'>
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Account Statement Screen</legend>
+                <div class="form-group">
+                    {{ form.accid.label(class='from-control-label') }}
+                    {% if form.accid.errors %}
+                        {{ form.accid(class='form-control is-invalid') }}
+                        {% for error in form.accid.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.accid(class='form-control') }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.stmtOption.label(class='from-control-label') }}
+                    {% if form.stmtOption.errors %}
+                        {{ form.stmtOption(class='form-control is-invalid') }}
+                        {% for error in form.stmtOption.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.stmtOption(class='form-control-label') }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.transNo.label(class='from-control-label') }}
+                    {% if form.transNo.errors %}
+                        {{ form.transNo(class='form-control is-invalid') }}
+                        {% for error in form.transNo.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.transNo(class='form-control') }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.startDate.label(class='from-control-label') }}
+                    {% if form.startDate.errors %}
+                        {{ form.startDate(class='form-control is-invalid') }}
+                        {% for error in form.startDate.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.startDate(class='form-control') }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.endDate.label(class='from-control-label') }}
+                    {% if form.endDate.errors %}
+                        {{ form.endDate(class='form-control is-invalid') }}
+                        {% for error in form.endDate.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {{ form.endDate(class='form-control') }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class='btn btn-outline-info') }}
+            </div>
+        </form>
+    </div> 
+    {% if data != False %}
+    <div class="col-md-12">
+        <h4>Statement Screen</h4>
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordred table-striped table-sm">
+                <thead>
+                    <th>Description</th>
+                    <th>Date (YYYY-MM-DD)</th>
+                    <th>Amount</th> 
+                </thead>
+                <tbody>
+                    {% for value in data %}
+                    <tr>
+                        <td>{% if value[3] == 0  %} Withdraw {% elif value[3] == 1 %} Deposite {% endif %}</td>
+                        <td>{{ value[4] }}</td>
+                        <td>{{ value[1] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+{% endblock content %}
